@@ -697,7 +697,12 @@ class ScouseFitChecker(object):
         lookup_handle : matplotlib legend handles
 
         """
-        for artist in legend.legendHandles:
+        legend_handles_array = None
+        try:
+            legend_handles_array = legend.legendHandles
+        except AttributeError:
+            legend_handles_array = legend.legend_handles
+        for artist in legend_handles_array:
             artist.set_picker(True)
             artist.set_pickradius(10) # 10 points tolerance
 
@@ -714,7 +719,11 @@ class ScouseFitChecker(object):
 
         """
         labels = [t.get_text() for t in legend.texts]
-        handles = legend.legendHandles
+        handles = None
+        try:
+            handles = legend.legendHandles
+        except AttributeError:
+            handles = legend.legend_handles
         label2handle = dict(zip(labels, handles))
         handle2text = dict(zip(handles, legend.texts))
         lookup_artist = {}
