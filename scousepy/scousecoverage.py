@@ -1481,7 +1481,10 @@ def make_radiobuttons(ax,options,function,**kwargs):
     """
     from matplotlib.widgets import RadioButtons
     myradiobuttons=RadioButtons(ax,options,**kwargs)
-    for circle in myradiobuttons.circles: # adjust radius here. The default is 0.05
-        circle.set_radius(0.05)
+    try:
+        for circle in myradiobuttons.circles: # adjust radius here. The default is 0.05
+            circle.set_radius(0.05)
+    except AttributeError:
+        pass
     myradiobuttons.on_clicked(function)
     return myradiobuttons
