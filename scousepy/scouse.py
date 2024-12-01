@@ -14,6 +14,10 @@ from astropy import wcs
 
 from astropy import log
 import numpy as np
+try:
+    np.set_printoptions(legacy='1.25')
+except AttributeError:
+    pass
 import os
 import sys
 import warnings
